@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Array Methods </h1>
+
+  <label for="arrayInput">Enter Array by , :</label>
+  <input type="text" id="arrayInput">
+  <button onclick="takeInput()">Submit</button>
+  <br/>
+  <label for="concatInput">Concat Method (Enter element to concat by , ):</label>
+  <input type="text" id="concatInput">
+  <button onclick="showConcat()">Concat</button>
+  <br/>
+  <label for="copyWithinInput">Copy Within Method:</label>
+  <input type="text" id="copyWithinInput">
+  <button onclick="showCopyWithin()">Copy Within</button>
+  <br/>
+  <label for="mapInput">Map Method:</label>
+  <input type="text" id="mapInput">
+  <button onclick="showMap()">Map</button>
+  <br/>
+  <label for="everyInput">Every Method:</label>
+  <input type="text" id="everyInput">
+  <button onclick="showEvery()">Every</button>
+  <br/>
+  <label for="someInput">Some Method:</label>
+  <input type="text" id="someInput">
+  <button onclick="showSome()">Some</button>
+  <br/>
+  <label for="filterInput">Filter Method:</label>
+  <input type="text" id="filterInput">
+  <button onclick="showFilter()">Filter</button>
+  <br/>
+  <label for="findInput">Find Method (Write the element to find ):</label>
+  <input type="text" id="findInput">
+  <button onclick="showFind()">Find</button>
+  <br/>
+  <label for="findIndexInput">FindIndex Method(Write the element whose index is to find ):</label>
+  <input type="text" id="findIndexInput">
+  <button onclick="showFindIndex()">FindIndex</button>
+  <br/>
+  <label for="indexOfInput">IndexOf Method:</label>
+  <input type="text" id="indexOfInput">
+  <button onclick="showIndexOf()">IndexOf</button>
+  <br/>
+  <label for="lastIndexOfInput">LastIndexOf Method:</label>
+  <input type="text" id="lastIndexOfInput">
+  <button onclick="showLastIndexOf()">LastIndexOf</button>
+  <br/>
+  <label for="pushInput">Push Method(Enter the element to push in the array):</label>
+  <input type="text" id="pushInput">
+  <button onclick="showPush()">Push</button>
+  <br/>
+  <label for="popInput">Pop Method:</label>
+  <button onclick="showPop()">Pop</button>
+  <br/>
+  <label for="shiftInput">Shift Method:</label>
+  <button onclick="showShift()">Shift</button>
+  <br/>
+  <div id="output"></div>
+
+  <script>
+    let array = [];
+
+function takeInput() {
+  const input = document.getElementById('arrayInput').value;
+  array = input.split(',').map((item) => parseInt(item.trim()));
+}
+
+function showConcat() {
+  const input = document.getElementById('concatInput').value;
+  const newArray = array.concat(parseArrayInput(input));
+  displayResult('Concat Method:', newArray);
+}
+
+function showCopyWithin() {
+  const input = document.getElementById('copyWithinInput').value;
+  const [target, start, end] = parseArrayInput(input);
+  const newArray = array.copyWithin(target, start, end);
+  displayResult('CopyWithin Method:', newArray);
+}
+
+function showMap() {
+  const input = document.getElementById('mapInput').value;
+  const newArray = array.map((num) => num * parseInt(input));
+  displayResult('Map Method:', newArray);
+}
+
+function showEvery() {
+  const input = document.getElementById('everyInput').value;
+  const result = array.every((num) => num > parseInt(input));
+  displayResult('Every Method:', result);
+}
+
+function showSome() {
+  const input = document.getElementById('someInput').value;
+  const result = array.some((num) => num > parseInt(input));
+  displayResult('Some Method:', result);
+}
+
+function showFilter() {
+  const input = document.getElementById('filterInput').value;
+  const newArray = array.filter((num) => num % parseInt(input) === 0);
+  displayResult('Filter Method:', newArray);
+}
+
+function showFind() {
+  const input = document.getElementById('findInput').value;
+  const result = array.find((num) => num === parseInt(input));
+  displayResult('Find Method:', result);
+}
+
+function showFindIndex() {
+  const input = document.getElementById('findIndexInput').value;
+  const index = array.findIndex((num) => num === parseInt(input));
+  displayResult('FindIndex Method:', index);
+}
+
+function showIndexOf() {
+  const input = document.getElementById('indexOfInput').value;
+  const index = array.indexOf(parseInt(input));
+  displayResult('IndexOf Method:', index);
+}
+
+function showLastIndexOf() {
+  const input = document.getElementById('lastIndexOfInput').value;
+  const index = array.lastIndexOf(parseInt(input));
+  displayResult('LastIndexOf Method:', index);
+}
+
+function showPush() {
+  const input = document.getElementById('pushInput').value;
+  array.push(parseInt(input));
+  displayResult('Push Method:', array);
+}
+
+function showPop() {
+  const lastElement = array.pop();
+  displayResult('Pop Method:', array, 'Removed element:', lastElement);
+}
+
+function showShift() {
+  const firstElement = array.shift();
+  displayResult('Shift Method:', array, 'Removed element:', firstElement);
+}
+
+function parseArrayInput(input) {
+  return input.split(',').map((item) => parseInt(item.trim()));
+}
+
+function displayResult(methodName, result, extraText = '') {
+  const output = document.getElementById('output');
+  output.innerHTML = `<strong>${methodName}</strong>: ${result} ${extraText}`;
+}
+
+  </script>
+</body>
+</html>
